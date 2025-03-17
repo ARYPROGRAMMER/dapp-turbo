@@ -23,6 +23,7 @@ model Website {
   url    String
   userId String
   ticks  WebsiteTicker[]
+  disabled Boolean @default(false)
 }
 
 model Validator {
