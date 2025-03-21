@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-export function MotionCard({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function MotionCard({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}

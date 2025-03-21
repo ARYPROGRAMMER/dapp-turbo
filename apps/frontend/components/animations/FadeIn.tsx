@@ -8,12 +8,12 @@ export const fadeInVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-export function FadeIn({ 
-  children, 
+export function FadeIn({
+  children,
   delay = 0,
   duration = 0.5,
-  className = "" 
-}: { 
+  className = "",
+}: {
   children: ReactNode;
   delay?: number;
   duration?: number;
@@ -32,11 +32,11 @@ export function FadeIn({
   );
 }
 
-export function FadeInStagger({ 
-  children, 
+export function FadeInStagger({
+  children,
   staggerDelay = 0.1,
-  className = "" 
-}: { 
+  className = "",
+}: {
   children: ReactNode;
   staggerDelay?: number;
   className?: string;
@@ -48,9 +48,9 @@ export function FadeInStagger({
       variants={{
         visible: {
           transition: {
-            staggerChildren: staggerDelay
-          }
-        }
+            staggerChildren: staggerDelay,
+          },
+        },
       }}
       className={className}
     >

@@ -3,15 +3,41 @@
 import { motion } from "framer-motion";
 import { FadeIn, FadeInStagger } from "@/components/animations/FadeIn";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { PlusCircle, Trash2, Globe, ArrowUpRight, Clock, Activity, LineChart, AlertCircle, RefreshCw, Bookmark } from "lucide-react";
+import {
+  PlusCircle,
+  Trash2,
+  Globe,
+  ArrowUpRight,
+  Clock,
+  Activity,
+  LineChart,
+  AlertCircle,
+  RefreshCw,
+  Bookmark,
+  Bell,
+  Settings,
+  Search,
+  Filter,
+  Home,
+  Cpu,
+  GaugeCircle,
+  LayoutDashboard,
+} from "lucide-react";
 import { useState } from "react";
 import { UptimeChart } from "@/components/charts/UptimeChart";
 import type { WebsiteStatus } from "@/types/website";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Bell, Settings, Search, Filter } from "lucide-react";
+import Link from "next/link";
 
 interface WebsiteCardProps {
   url: string;
@@ -24,9 +50,10 @@ interface WebsiteCardProps {
 export default function Dashboard() {
   const [newWebsiteUrl, setNewWebsiteUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [activeView, setActiveView] = useState("overview");
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="min-h-screen bg-background"
@@ -45,6 +72,11 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex items-center gap-4">
+            <Link href="/">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Home className="w-4 h-4" /> Home
+              </Button>
+            </Link>
             <Button variant="ghost" size="icon">
               <Bell className="w-5 h-5" />
             </Button>
@@ -53,16 +85,45 @@ export default function Dashboard() {
             </Button>
           </div>
         </div>
+
+        {/* Add Dashboard Tabs */}
+        <div className="container mx-auto px-6 pb-1">
+          <div className="flex space-x-4 border-b border-transparent">
+            <Button
+              variant="link"
+              className={`pb-2 px-0 ${activeView === "overview" ? "border-b-2 border-primary text-white" : "text-muted-foreground"}`}
+              onClick={() => setActiveView("overview")}
+            >
+              <LayoutDashboard className="w-4 h-4 mr-2" /> Overview
+            </Button>
+            <Button
+              variant="link"
+              className={`pb-2 px-0 ${activeView === "performance" ? "border-b-2 border-primary text-white" : "text-muted-foreground"}`}
+              onClick={() => setActiveView("performance")}
+            >
+              <GaugeCircle className="w-4 h-4 mr-2" /> Performance
+            </Button>
+            <Button
+              variant="link"
+              className={`pb-2 px-0 ${activeView === "nodes" ? "border-b-2 border-primary text-white" : "text-muted-foreground"}`}
+              onClick={() => setActiveView("nodes")}
+            >
+              <Cpu className="w-4 h-4 mr-2" /> Nodes
+            </Button>
+          </div>
+        </div>
       </header>
 
-      <div className="container mx-auto px-6 py-8 space-y-8">
+      <div className="container mx-auto px-6 py-6 space-y-6">
         <FadeIn>
-          <Card>
+          <Card className="bg-black/20 border-primary/20">
             <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1 space-y-2">
                   <h3 className="font-semibold">Add New Website</h3>
-                  <p className="text-sm text-muted-foreground">Start monitoring a new website in seconds</p>
+                  <p className="text-sm text-muted-foreground">
+                    Start monitoring a new website in seconds
+                  </p>
                 </div>
                 <div className="flex gap-2 items-start">
                   <Input
@@ -88,6 +149,7 @@ export default function Dashboard() {
               value="12"
               trend="+2 this week"
               trendUp={true}
+              glowing={true}
             />
           </FadeIn>
           <FadeIn>
@@ -97,6 +159,7 @@ export default function Dashboard() {
               value="99.9%"
               trend="0.2% better than last month"
               trendUp={true}
+              glowing={true}
             />
           </FadeIn>
           <FadeIn>
@@ -106,6 +169,7 @@ export default function Dashboard() {
               value="187ms"
               trend="12ms improvement"
               trendUp={true}
+              glowing={true}
             />
           </FadeIn>
           <FadeIn>
@@ -115,6 +179,7 @@ export default function Dashboard() {
               value="3"
               trend="1 resolved today"
               trendUp={false}
+              glowing={true}
             />
           </FadeIn>
         </FadeInStagger>
@@ -155,7 +220,9 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle>Response Times</CardTitle>
-                    <CardDescription>Average across all endpoints</CardDescription>
+                    <CardDescription>
+                      Average across all endpoints
+                    </CardDescription>
                   </div>
                   <Tabs defaultValue="24h" className="space-y-4">
                     <TabsList>
@@ -188,7 +255,9 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle>Monitored Websites</CardTitle>
-                  <CardDescription>Manage and monitor your websites</CardDescription>
+                  <CardDescription>
+                    Manage and monitor your websites
+                  </CardDescription>
                 </div>
                 <div className="flex items-center gap-3">
                   <Button variant="outline" size="sm" className="gap-2">
@@ -246,24 +315,31 @@ export default function Dashboard() {
   );
 }
 
-function StatCard({ 
-  icon, 
-  title, 
-  value, 
+function StatCard({
+  icon,
+  title,
+  value,
   trend,
-  trendUp
-}: { 
-  icon: React.ReactNode; 
-  title: string; 
-  value: string; 
+  trendUp,
+  glowing = false,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
   trend: string;
   trendUp: boolean;
+  glowing?: boolean;
 }) {
   return (
-    <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
-      <Card className="overflow-hidden relative">
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <Card
+        className={`overflow-hidden relative ${glowing ? "border-primary/30" : ""}`}
+      >
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"
           initial={{ x: "-100%" }}
           whileHover={{ x: "100%" }}
           transition={{ duration: 0.5 }}
@@ -281,7 +357,9 @@ function StatCard({
           </div>
         </CardContent>
         <CardFooter>
-          <p className={`text-xs flex items-center gap-1 ${trendUp ? 'text-emerald-500' : 'text-amber-500'}`}>
+          <p
+            className={`text-xs flex items-center gap-1 ${trendUp ? "text-emerald-500" : "text-amber-500"}`}
+          >
             {trendUp ? <ArrowUpRight className="w-3 h-3" /> : null}
             {trend}
           </p>
@@ -306,11 +384,13 @@ function WebsiteCard({
       <Card className="overflow-hidden">
         <CardContent className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6">
           <div className="flex items-center gap-4">
-            <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
-              status === "up" 
-                ? "bg-emerald-500/10 text-emerald-500" 
-                : "bg-red-500/10 text-red-500"
-            }`}>
+            <div
+              className={`flex items-center justify-center w-10 h-10 rounded-full ${
+                status === "up"
+                  ? "bg-emerald-500/10 text-emerald-500"
+                  : "bg-red-500/10 text-red-500"
+              }`}
+            >
               {status === "up" ? (
                 <ArrowUpRight className="w-5 h-5" />
               ) : (

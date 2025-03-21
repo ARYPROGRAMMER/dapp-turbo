@@ -29,8 +29,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <ClerkProvider>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <ThemeProvider defaultTheme="dark" attribute="class" forcedTheme="dark">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <ThemeProvider
+            defaultTheme="dark"
+            attribute="class"
+            forcedTheme="dark"
+          >
             <AnimationProvider>
               <Appbar />
               {children}
