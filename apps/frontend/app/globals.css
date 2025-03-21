@@ -121,3 +121,38 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 0;
+  }
+  10%, 80% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease forwards;
+  animation-delay: var(--animation-delay, 0ms);
+  opacity: 0;
+}
+
+.animate-meteor {
+  animation: meteor 5s linear infinite;
+}
