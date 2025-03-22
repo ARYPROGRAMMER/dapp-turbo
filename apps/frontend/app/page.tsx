@@ -30,6 +30,9 @@ import { MotionCard } from "@/components/animations/MotionCard";
 import { Meteors } from "@/components/ui/meteors";
 import dynamic from "next/dynamic";
 import { LiveStatusBadge } from "@/components/animations/LiveStatusBadge";
+import { DemoWebsiteRow } from "@/components/demo/DemoWebsiteRow";
+import { FeatureCard } from "@/components/home/FeatureCard";
+import type { Feature, PricingPlan, StatData, Testimonial } from "@/types/website";
 
 const DynamicPage = dynamic(() => Promise.resolve(HomePage), {
   ssr: false,
@@ -40,6 +43,172 @@ export default function Page() {
 }
 
 function HomePage() {
+  // Data definitions
+  const features: Feature[] = [
+    {
+      title: "Real-time Monitoring",
+      icon: <Activity className="w-8 h-8 text-primary" />,
+      description: "Track your dApp's performance with millisecond precision and instant notifications."
+    },
+    {
+      title: "Decentralized Security",
+      icon: <Shield className="w-8 h-8 text-primary" />,
+      description: "Multi-validator architecture ensures reliable and trustless monitoring."
+    },
+    {
+      title: "Instant Alerts",
+      icon: <Zap className="w-8 h-8 text-primary" />,
+      description: "Get notified immediately through multiple channels when issues arise."
+    },
+    {
+      title: "Global Coverage",
+      icon: <Globe className="w-8 h-8 text-primary" />,
+      description: "Monitor from distributed geographic locations for regional insights."
+    }
+  ];
+
+  const howItWorks = [
+    {
+      step: "1",
+      title: "Add Your dApp",
+      description:
+        "Simply enter your dApp's URL and configure monitoring parameters to get started.",
+      icon: <Globe className="w-6 h-6 text-primary" />,
+    },
+    {
+      step: "2",
+      title: "Validator Network",
+      description:
+        "Our decentralized validators continuously monitor your dApp's availability.",
+      icon: <Blocks className="w-6 h-6 text-primary" />,
+    },
+    {
+      step: "3",
+      title: "Real-time Insights",
+      description:
+        "Get instant notifications and detailed analytics about your dApp's performance.",
+      icon: <BarChart3 className="w-6 h-6 text-primary" />,
+    },
+  ];
+
+  const detailedFeatures: Feature[] = [
+    {
+      title: "Multi-Chain Support",
+      icon: <Database className="w-10 h-10 text-primary/90" />,
+      description:
+        "Monitor applications across Ethereum, Solana, Polygon, and other major blockchains from a single dashboard.",
+    },
+    {
+      title: "Smart Contract Monitoring",
+      icon: <Code className="w-10 h-10 text-primary/90" />,
+      description:
+        "Track smart contract interactions, gas usage, and execution success rates with detailed analytics.",
+    },
+    {
+      title: "Transaction Analysis",
+      icon: <Wallet className="w-10 h-10 text-primary/90" />,
+      description:
+        "Monitor transaction volumes, confirmation times, and failed transaction rates across your dApp.",
+    },
+    {
+      title: "Node Health Monitoring",
+      icon: <Server className="w-10 h-10 text-primary/90" />,
+      description:
+        "Keep track of your RPC nodes with comprehensive health metrics and performance analytics.",
+    },
+    {
+      title: "Security Alerts",
+      icon: <Lock className="w-10 h-10 text-primary/90" />,
+      description:
+        "Get immediate notifications about security issues, suspicious activities, or contract vulnerabilities.",
+    },
+    {
+      title: "Community Insights",
+      icon: <Users className="w-10 h-10 text-primary/90" />,
+      description:
+        "Understand user interactions and community engagement with your dApp through detailed analytics.",
+    },
+  ];
+
+  const stats: StatData[] = [
+    { number: "99.9%", label: "Average Uptime" },
+    { number: "500+", label: "Active dApps" },
+    { number: "50ms", label: "Avg Response Time" },
+    { number: "24/7", label: "Monitoring" },
+  ];
+
+  const testimonials: Testimonial[] = [
+    {
+      quote:
+        "The most reliable monitoring solution we've used for our DeFi protocol.",
+      author: "Alex Thompson",
+      role: "CTO at DeFi Protocol",
+      rating: 5,
+    },
+    {
+      quote:
+        "Decentralized monitoring gives us peace of mind about our dApp's availability.",
+      author: "Sarah Chen",
+      role: "Lead Developer at NFT Marketplace",
+      rating: 5,
+    },
+    {
+      quote:
+        "Outstanding support and incredibly detailed analytics.",
+      author: "Michael Roberts",
+      role: "DevOps at Web3 Gaming",
+      rating: 5,
+    },
+  ];
+
+  const blockchains = [
+    "Ethereum",
+    "Solana",
+    "Polygon",
+    "Avalanche",
+    "BSC",
+    "Optimism",
+  ];
+
+  const pricingPlans: PricingPlan[] = [
+    {
+      name: "Startup",
+      price: "$29",
+      description: "Perfect for small projects",
+      features: [
+        "5 websites",
+        "1-minute check interval",
+        "Email notifications",
+        "7-day history",
+      ],
+    },
+    {
+      name: "Pro",
+      price: "$99",
+      description: "For growing businesses",
+      features: [
+        "25 websites",
+        "30-second check interval",
+        "Multi-channel alerts",
+        "30-day history",
+        "API access",
+      ],
+    },
+    {
+      name: "Enterprise",
+      price: "Custom",
+      description: "For large organizations",
+      features: [
+        "Unlimited websites",
+        "10-second check interval",
+        "Custom integrations",
+        "1-year history",
+        "Priority support",
+        "SLA guarantee",
+      ],
+    },
+  ];
+
   return (
     <>
       <div className="relative min-h-screen bg-gradient-to-b from-background to-background/95">
@@ -153,26 +322,14 @@ function HomePage() {
 
             {/* Feature Cards with more content */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-12">
-              <FeatureCard
-                icon={<Activity className="w-8 h-8 text-primary" />}
-                title="Real-time Monitoring"
-                description="Track your dApp's performance with millisecond precision and instant notifications."
-              />
-              <FeatureCard
-                icon={<Shield className="w-8 h-8 text-primary" />}
-                title="Decentralized Security"
-                description="Multi-validator architecture ensures reliable and trustless monitoring."
-              />
-              <FeatureCard
-                icon={<Zap className="w-8 h-8 text-primary" />}
-                title="Instant Alerts"
-                description="Get notified immediately through multiple channels when issues arise."
-              />
-              <FeatureCard
-                icon={<Globe className="w-8 h-8 text-primary" />}
-                title="Global Coverage"
-                description="Monitor from distributed geographic locations for regional insights."
-              />
+              {features.map((feature) => (
+                <FeatureCard
+                  key={feature.title}
+                  icon={feature.icon}
+                  title={feature.title}
+                  description={feature.description}
+                />
+              ))}
             </div>
           </FadeInStagger>
         </main>
@@ -189,29 +346,7 @@ function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  step: "1",
-                  title: "Add Your dApp",
-                  description:
-                    "Simply enter your dApp's URL and configure monitoring parameters to get started.",
-                  icon: <Globe className="w-6 h-6 text-primary" />,
-                },
-                {
-                  step: "2",
-                  title: "Validator Network",
-                  description:
-                    "Our decentralized validators continuously monitor your dApp's availability.",
-                  icon: <Blocks className="w-6 h-6 text-primary" />,
-                },
-                {
-                  step: "3",
-                  title: "Real-time Insights",
-                  description:
-                    "Get instant notifications and detailed analytics about your dApp's performance.",
-                  icon: <BarChart3 className="w-6 h-6 text-primary" />,
-                },
-              ].map((item) => (
+              {howItWorks.map((item) => (
                 <div
                   key={item.step}
                   className="relative bg-black/40 backdrop-blur-sm p-6 rounded-xl border border-white/10 shadow-lg"
@@ -243,44 +378,7 @@ function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Multi-Chain Support",
-                icon: <Database className="w-10 h-10 text-primary/90" />,
-                description:
-                  "Monitor applications across Ethereum, Solana, Polygon, and other major blockchains from a single dashboard.",
-              },
-              {
-                title: "Smart Contract Monitoring",
-                icon: <Code className="w-10 h-10 text-primary/90" />,
-                description:
-                  "Track smart contract interactions, gas usage, and execution success rates with detailed analytics.",
-              },
-              {
-                title: "Transaction Analysis",
-                icon: <Wallet className="w-10 h-10 text-primary/90" />,
-                description:
-                  "Monitor transaction volumes, confirmation times, and failed transaction rates across your dApp.",
-              },
-              {
-                title: "Node Health Monitoring",
-                icon: <Server className="w-10 h-10 text-primary/90" />,
-                description:
-                  "Keep track of your RPC nodes with comprehensive health metrics and performance analytics.",
-              },
-              {
-                title: "Security Alerts",
-                icon: <Lock className="w-10 h-10 text-primary/90" />,
-                description:
-                  "Get immediate notifications about security issues, suspicious activities, or contract vulnerabilities.",
-              },
-              {
-                title: "Community Insights",
-                icon: <Users className="w-10 h-10 text-primary/90" />,
-                description:
-                  "Understand user interactions and community engagement with your dApp through detailed analytics.",
-              },
-            ].map((feature) => (
+            {detailedFeatures.map((feature) => (
               <motion.div
                 key={feature.title}
                 whileHover={{ scale: 1.02 }}
@@ -311,12 +409,7 @@ function HomePage() {
         {/* Stats Section */}
         <section className="py-16 container mx-auto px-6 border-t border-white/5">
           <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { number: "99.9%", label: "Average Uptime" },
-              { number: "500+", label: "Active dApps" },
-              { number: "50ms", label: "Avg Response Time" },
-              { number: "24/7", label: "Monitoring" },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="text-center space-y-2">
                 <h3 className="text-4xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                   {stat.number}
@@ -341,29 +434,7 @@ function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  quote:
-                    "The most reliable monitoring solution we've used for our DeFi protocol.",
-                  author: "Alex Thompson",
-                  role: "CTO at DeFi Protocol",
-                  rating: 5,
-                },
-                {
-                  quote:
-                    "Decentralized monitoring gives us peace of mind about our dApp's availability.",
-                  author: "Sarah Chen",
-                  role: "Lead Developer at NFT Marketplace",
-                  rating: 5,
-                },
-                {
-                  quote:
-                    "Outstanding support and incredibly detailed analytics.",
-                  author: "Michael Roberts",
-                  role: "DevOps at Web3 Gaming",
-                  rating: 5,
-                },
-              ].map((testimonial) => (
+              {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.author}
                   className="p-6 rounded-xl border border-primary/20 bg-background/60 backdrop-blur-md space-y-4"
@@ -398,14 +469,7 @@ function HomePage() {
           </div>
 
           <div className="flex flex-wrap justify-center items-center gap-12">
-            {[
-              "Ethereum",
-              "Solana",
-              "Polygon",
-              "Avalanche",
-              "BSC",
-              "Optimism",
-            ].map((chain) => (
+            {blockchains.map((chain) => (
               <div
                 key={chain}
                 className="text-white/50 hover:text-white transition-colors text-xl font-bold"
@@ -430,44 +494,7 @@ function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Startup",
-                  price: "$29",
-                  description: "Perfect for small projects",
-                  features: [
-                    "5 websites",
-                    "1-minute check interval",
-                    "Email notifications",
-                    "7-day history",
-                  ],
-                },
-                {
-                  name: "Pro",
-                  price: "$99",
-                  description: "For growing businesses",
-                  features: [
-                    "25 websites",
-                    "30-second check interval",
-                    "Multi-channel alerts",
-                    "30-day history",
-                    "API access",
-                  ],
-                },
-                {
-                  name: "Enterprise",
-                  price: "Custom",
-                  description: "For large organizations",
-                  features: [
-                    "Unlimited websites",
-                    "10-second check interval",
-                    "Custom integrations",
-                    "1-year history",
-                    "Priority support",
-                    "SLA guarantee",
-                  ],
-                },
-              ].map((plan) => (
+              {pricingPlans.map((plan) => (
                 <div
                   key={plan.name}
                   className="relative rounded-xl bg-black/50 border border-white/10 p-8 shadow-lg hover:border-primary/20 transition-colors backdrop-blur-md"
@@ -542,73 +569,3 @@ function HomePage() {
     </>
   );
 }
-
-// Simplified and more visible feature card
-function FeatureCard({
-  icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
-      className="group p-5 rounded-xl border border-white/10 bg-black/30 backdrop-blur-sm hover:border-primary/30 transition-all duration-300"
-    >
-      <div>
-        <div className="p-2 rounded-lg bg-primary/10 inline-block mb-3">
-          {icon}
-        </div>
-        <h3 className="text-base font-semibold text-white group-hover:text-primary transition-colors mb-1">
-          {title}
-        </h3>
-        <p className="text-white/70 text-sm">{description}</p>
-      </div>
-    </motion.div>
-  );
-}
-
-function DemoWebsiteRow({
-  url,
-  status,
-  latency,
-  uptime,
-}: {
-  url: string;
-  status: "up" | "down";
-  latency: string;
-  uptime: string;
-}) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.01 }}
-      className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
-    >
-      <div className="flex items-center gap-4">
-        <div
-          className={`h-2.5 w-2.5 rounded-full ${
-            status === "up" ? "bg-emerald-500" : "bg-red-500"
-          }`}
-        />
-        <span className="font-medium text-white">{url}</span>
-      </div>
-      <div className="flex items-center gap-6 text-sm">
-        <span className="text-white/70">Latency: {latency}</span>
-        <span className="text-white/70">Uptime: {uptime}</span>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-white hover:bg-white/10"
-        >
-          Details
-        </Button>
-      </div>
-    </motion.div>
-  );
-}
-
-export { DemoWebsiteRow };
