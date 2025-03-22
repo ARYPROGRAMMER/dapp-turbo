@@ -32,7 +32,12 @@ import dynamic from "next/dynamic";
 import { LiveStatusBadge } from "@/components/animations/LiveStatusBadge";
 import { DemoWebsiteRow } from "@/components/demo/DemoWebsiteRow";
 import { FeatureCard } from "@/components/home/FeatureCard";
-import type { Feature, PricingPlan, StatData, Testimonial } from "@/types/website";
+import type {
+  Feature,
+  PricingPlan,
+  StatData,
+  Testimonial,
+} from "@/types/website";
 
 const DynamicPage = dynamic(() => Promise.resolve(HomePage), {
   ssr: false,
@@ -48,23 +53,27 @@ function HomePage() {
     {
       title: "Real-time Monitoring",
       icon: <Activity className="w-8 h-8 text-primary" />,
-      description: "Track your dApp's performance with millisecond precision and instant notifications."
+      description:
+        "Track your dApp's performance with millisecond precision and instant notifications.",
     },
     {
       title: "Decentralized Security",
       icon: <Shield className="w-8 h-8 text-primary" />,
-      description: "Multi-validator architecture ensures reliable and trustless monitoring."
+      description:
+        "Multi-validator architecture ensures reliable and trustless monitoring.",
     },
     {
       title: "Instant Alerts",
       icon: <Zap className="w-8 h-8 text-primary" />,
-      description: "Get notified immediately through multiple channels when issues arise."
+      description:
+        "Get notified immediately through multiple channels when issues arise.",
     },
     {
       title: "Global Coverage",
       icon: <Globe className="w-8 h-8 text-primary" />,
-      description: "Monitor from distributed geographic locations for regional insights."
-    }
+      description:
+        "Monitor from distributed geographic locations for regional insights.",
+    },
   ];
 
   const howItWorks = [
@@ -153,8 +162,7 @@ function HomePage() {
       rating: 5,
     },
     {
-      quote:
-        "Outstanding support and incredibly detailed analytics.",
+      quote: "Outstanding support and incredibly detailed analytics.",
       author: "Michael Roberts",
       role: "DevOps at Web3 Gaming",
       rating: 5,

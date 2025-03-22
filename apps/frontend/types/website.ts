@@ -9,7 +9,7 @@ export interface WebsiteData {
   url: string;
   status: WebsiteStatus;
   uptime: string;
-  latency: string; 
+  latency: string;
   lastChecked?: string;
 }
 

@@ -6,13 +6,9 @@ export function PricingPlan({ plan }: { plan: PricingPlanType }) {
   return (
     <div className="relative rounded-xl bg-black/50 border border-white/10 p-8 shadow-lg hover:border-primary/20 transition-colors backdrop-blur-md">
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-white">
-          {plan.name}
-        </h3>
+        <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
         <div className="flex items-baseline gap-1">
-          <span className="text-4xl font-bold text-white">
-            {plan.price}
-          </span>
+          <span className="text-4xl font-bold text-white">{plan.price}</span>
           {plan.price !== "Custom" && (
             <span className="text-white/70">/mo</span>
           )}
@@ -30,9 +26,7 @@ export function PricingPlan({ plan }: { plan: PricingPlanType }) {
           ))}
         </ul>
         <Button className="w-full bg-primary hover:bg-primary/90">
-          {plan.price === "Custom"
-            ? "Contact Sales"
-            : "Get Started"}
+          {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
         </Button>
       </div>
     </div>
