@@ -375,7 +375,7 @@ function HomePage() {
         </section>
 
         {/* New: Key Features Section with detailed cards */}
-        <section className="py-20 container mx-auto px-6">
+        <section className="py-20 bg-primary/[0.03] backdrop-blur-sm container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-white">Key Features</h2>
             <p className="text-white/80 mt-4 max-w-3xl mx-auto">
@@ -415,7 +415,7 @@ function HomePage() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16 container mx-auto px-6 border-t border-white/5">
+        <section className="py-16 container mx-auto px-6 border-t bg-primary/[0.03] backdrop-blur-sm border-white/5">
           <div className="grid md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center space-y-2">
@@ -430,7 +430,7 @@ function HomePage() {
 
         {/* Improved Testimonials Section */}
         <section className="py-20 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent">
-          <div className="container mx-auto px-6">
+          <div className="container bg-primary/[0.03] backdrop-blur-sm mx-auto px-6">
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-3xl font-bold text-white">
                 Trusted by Web3 Leaders
@@ -466,7 +466,7 @@ function HomePage() {
         </section>
 
         {/* Add Partners/Integrations Section */}
-        <section className="py-20 container mx-auto px-6">
+        <section className="py-20 bg-primary/[0.03] backdrop-blur-sm container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-2xl font-bold text-white">
               Integrated With Leading Blockchains

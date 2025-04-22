@@ -1,5 +1,5 @@
 import express from "express";
-import { authMiddleware } from "./middleware";
+import {authMiddleware} from "./middleware";
 import { prismaClient } from "db/client";
 
 const app = express();
